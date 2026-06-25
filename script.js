@@ -10,6 +10,15 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => navLinks?.classList.remove('open'));
 });
 
+document.querySelectorAll('.nav-drop-toggle').forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    const dropdown = button.closest('.nav-dropdown');
+    const isOpen = dropdown.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-links a').forEach(link => {
   if (link.getAttribute('href') === currentPage) link.classList.add('active');
