@@ -1,28 +1,11 @@
-# FC Jiskra Modrá – web
+# FC Jiskra Modrá
 
-Statický frontend pro náhled ve VS Code a následné nasazení na Vercel.
+Statický klubový web v HTML, CSS a JavaScriptu.
 
 ## Spuštění
+Otevřete `index.html` nebo spusťte lokální server ve VS Code.
 
-```bash
-npm install
-npm run dev
-```
-
-Poté otevřít lokální adresu z terminálu.
-
-## Struktura
-
-- `index.html` – úvodní stránka
-- `klub.html` – informace o klubu
-- `tymy.html` – mužstva
-- `zapasy.html` – zápasy a tabulka
-- `areal.html` – sportovní areál
-- `partneri.html` – partneři
-- `kontakt.html` – kontakt
-- `rezervace.html` – poptávkový formulář
-- `styles.css` – vzhled webu
-- `script.js` – menu, animace, ukázková data a formulář
-- `assets/logo.png` – klubové logo
-
-Formulář je zatím pouze ukázkový a je připravený pro pozdější napojení.
+## Nasazení na Vercel
+- Framework preset: Other
+- Root directory: ./
+- Bez build commandu a output directory
