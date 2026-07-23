@@ -708,3 +708,92 @@ textarea:focus{outline:3px solid rgba(242,195,53,.25);border-color:var(--gold-2)
   .photo-placeholder span,.gallery-tile span{left:12px;bottom:12px;font-size:12px;padding:8px 10px}
   .booking-photo span{left:5px;right:5px;bottom:5px;font-size:6px;padding:3px}
 }
+
+/* v16 – skutečný obsah a fotografie */
+.lang-switch{display:flex;gap:9px;font-size:12px;font-weight:800;color:rgba(255,255,255,.55)}.lang-switch span.active{color:var(--gold)}
+.leadership{margin-top:52px}.leadership>h2{margin-bottom:22px}.contact-list{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}.contact-list article{padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:5px;border-bottom:1px solid var(--line)}.contact-list strong{font-size:21px}.contact-list span{color:var(--muted);margin-bottom:8px}.contact-list a{font-weight:700}
+.contact-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}.contact-panel>div{padding:34px;border-right:1px solid var(--line)}.contact-panel>div:last-child{border-right:0}.contact-panel h2{font-size:34px;margin:7px 0 14px}.contact-panel a{font-weight:700}.text-link{display:inline-block;margin-top:10px;color:var(--purple)}
+.team-info{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:48px}.btn-small{padding:12px 18px}.players-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.player-card{background:#fff;border:1px solid var(--line);overflow:hidden}.player-card img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}.player-card h3{padding:14px 16px;margin:0;font-size:23px}.content-note{margin-top:20px;color:var(--muted)}
+.gallery-category{margin-bottom:68px}.real-gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.gallery-photo{position:relative;padding:0;border:0;background:#eee;cursor:pointer;overflow:hidden;text-align:left}.gallery-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .35s ease}.gallery-photo:hover img{transform:scale(1.035)}.gallery-photo span{position:absolute;left:0;right:0;bottom:0;padding:20px 12px 10px;color:#fff;font-size:12px;font-weight:800;background:linear-gradient(transparent,rgba(11,2,28,.8))}
+.camp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.camp-category{border:1px solid var(--line);background:#fff}.camp-cover{position:relative;width:100%;padding:0;border:0;cursor:pointer;overflow:hidden}.camp-cover img{width:100%;height:250px;object-fit:cover;display:block;transition:transform .35s}.camp-cover:hover img{transform:scale(1.03)}.camp-cover span{position:absolute;left:18px;bottom:16px;background:var(--purple);color:#fff;padding:9px 12px;font-weight:800}.camp-category>div{padding:22px}.camp-category h3{font-size:30px;margin:0 0 8px}.text-button{border:0;background:transparent;color:var(--purple);font-weight:800;padding:0;cursor:pointer}.hidden-gallery{display:none}.real-booking-photo{object-fit:cover;border:1px solid var(--line)}
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(8,2,20,.94);display:none;align-items:center;justify-content:center;padding:28px}.lightbox.open{display:flex}.lightbox-inner{max-width:min(1100px,94vw);max-height:92vh;display:flex;flex-direction:column;gap:12px}.lightbox img{max-width:100%;max-height:78vh;object-fit:contain}.lightbox-caption{color:#fff;text-align:center}.lightbox-close{position:fixed;right:22px;top:18px;border:0;background:#fff;width:42px;height:42px;font-size:25px;cursor:pointer}.lightbox-thumbs{display:flex;gap:8px;overflow:auto;max-width:90vw}.lightbox-thumbs button{border:2px solid transparent;padding:0;background:none}.lightbox-thumbs img{width:72px;height:52px;object-fit:cover}.lightbox-thumbs button.active{border-color:var(--gold)}
+.partner-thanks{text-align:center;background:var(--purple);color:#fff}.partner-thanks h2{color:#fff}.partner-thanks p:last-child{color:rgba(255,255,255,.75)}
+@media(max-width:900px){.contact-list,.contact-panel{grid-template-columns:1fr}.contact-panel>div{border-right:0;border-bottom:1px solid var(--line)}.contact-panel>div:last-child{border-bottom:0}.players-grid,.real-gallery-grid{grid-template-columns:repeat(2,1fr)}.camp-grid{grid-template-columns:1fr}.team-info{align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){.top-strip-inner{justify-content:space-between}.players-grid{grid-template-columns:repeat(2,1fr);gap:10px}.player-card h3{font-size:19px;padding:10px}.real-gallery-grid{grid-template-columns:1fr 1fr;gap:8px}.gallery-photo span{font-size:10px;padding:14px 8px 7px}.camp-cover img{height:190px}.contact-panel>div{padding:24px}.lightbox{padding:14px}.lightbox-close{right:10px;top:10px}}
+
+
+/* v17 – jazykové mutace, přesné Fotbal.cz odkazy a výraznější sociální sítě */
+.top-strip-inner{justify-content:flex-end;min-height:38px}
+.lang-switch{display:flex;align-items:center;gap:4px}
+.lang-switch button{border:0;background:transparent;color:rgba(255,255,255,.62);font:800 12px/1 Manrope,sans-serif;letter-spacing:.08em;padding:7px 9px;cursor:pointer;border-bottom:2px solid transparent}
+.lang-switch button:hover,.lang-switch button.active{color:#fff;border-bottom-color:var(--gold)}
+.football-links-heading{max-width:760px;margin-bottom:24px}
+.football-links-heading h2{margin:2px 0 8px}
+.football-links-heading p:last-child{color:var(--muted);margin:0}
+.football-links-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.football-link-item{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:14px;padding:19px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);box-shadow:0 12px 28px rgba(20,6,47,.07);transition:transform .2s ease,box-shadow .2s ease}
+.football-link-item:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(20,6,47,.12)}
+.football-link-item>span{display:grid;place-items:center;width:42px;height:42px;background:var(--purple);color:var(--gold);font-weight:900}
+.football-link-item strong{display:block;color:var(--purple);font-size:17px}
+.football-link-item small{display:block;margin-top:3px;color:var(--muted);line-height:1.35}
+.football-link-item>b{color:var(--gold);font-size:22px}
+.football-links-grid.compact{margin-top:24px}
+.footer-inner{align-items:center}
+.footer-social-block{display:flex;align-items:center;gap:16px}
+.footer-social-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.58);font-weight:800}
+.footer-socials{display:flex;gap:9px;align-items:center}
+.social-link{display:flex;align-items:center;gap:9px;min-height:42px;padding:9px 13px;border:1px solid rgba(255,255,255,.18);color:#fff;font-size:13px;font-weight:800;transition:background .2s,border-color .2s,transform .2s}
+.social-link svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+.social-link.facebook svg{fill:currentColor;stroke:none}
+.social-link.instagram:hover{background:#fff;color:var(--purple);border-color:#fff;transform:translateY(-2px)}
+.social-link.pending{opacity:.58;cursor:default}
+.social-link small{font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+@media(max-width:900px){.football-links-grid{grid-template-columns:1fr}.footer-social-block{align-items:flex-start;flex-direction:column;gap:8px}}
+@media(max-width:600px){.top-strip-inner{justify-content:center}.lang-switch button{padding:7px 13px}.footer-inner{align-items:flex-start;gap:22px}.footer-socials{flex-wrap:wrap}.social-link{padding:9px 11px}.football-link-item{grid-template-columns:38px minmax(0,1fr) auto;padding:15px}.football-link-item>span{width:38px;height:38px}}
+
+/* v18 – finální úprava Fotbal.cz odkazů a sociálních sítí */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.top-strip-inner{justify-content:space-between}
+.top-socials{display:flex;align-items:center;gap:8px}
+.top-socials a,.top-socials>span{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.9);font-weight:800;font-size:12px;padding:5px 8px;border-radius:2px;transition:background .18s ease,color .18s ease}
+.top-socials a:hover{background:rgba(255,255,255,.1);color:var(--gold)}
+.top-socials .pending{color:rgba(255,255,255,.5)}
+.top-socials svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+.top-socials .pending svg{fill:currentColor;stroke:none}
+.fotbal-link-section,.matches-section{background:#fff}
+.football-resource-grid{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:18px;align-items:stretch}
+.football-resource-card{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-width:0;padding:26px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--purple);box-shadow:0 14px 34px rgba(20,6,47,.08)}
+.football-resource-card.featured{border-top-color:var(--gold);background:linear-gradient(145deg,#fff 0%,#fffaf0 100%);box-shadow:0 20px 44px rgba(20,6,47,.13);transform:translateY(-8px)}
+.football-resource-badge{position:absolute;right:18px;top:16px;padding:5px 9px;background:var(--gold);color:#201100;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+.football-resource-copy{padding-right:8px}
+.football-resource-card.featured .football-resource-copy{padding-right:100px}
+.football-resource-label{display:block;font-family:'Barlow Condensed','Manrope',sans-serif;font-size:28px;line-height:1;text-transform:uppercase;font-weight:800;color:var(--purple);margin-bottom:10px}
+.football-resource-card p{margin:0 0 22px;color:var(--muted);font-size:14px}
+.football-resource-button{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:13px 15px;border:1px solid rgba(38,16,95,.2);background:var(--soft);color:var(--purple);font-weight:900;line-height:1.3;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.football-resource-button:hover{transform:translateY(-2px);background:#fff;border-color:var(--gold-2)}
+.football-resource-button.primary{background:var(--purple);border-color:var(--purple);color:#fff}
+.football-resource-button.primary:hover{background:var(--purple-2);border-color:var(--gold)}
+.football-resource-button b{color:var(--gold-2);font-size:20px}
+.football-resource-button.primary b{color:var(--gold)}
+.matches-section{overflow:hidden}
+@media(max-width:980px){
+  .football-resource-grid{grid-template-columns:1fr 1fr}
+  .football-resource-card.featured{grid-column:1/-1;grid-row:1;transform:none}
+}
+@media(max-width:700px){
+  .top-socials span span,.top-socials a span{display:none}
+  .top-socials a,.top-socials>span{padding:6px}
+  .top-socials svg{width:18px;height:18px}
+  .football-resource-grid{grid-template-columns:1fr;gap:14px}
+  .football-resource-card.featured{grid-column:auto}
+  .football-resource-card{padding:21px}
+  .football-resource-card.featured .football-resource-copy{padding-right:0;padding-top:24px}
+  .football-resource-badge{left:20px;right:auto;top:14px}
+  .football-resource-label{font-size:25px}
+  .football-resource-button{font-size:14px}
+}
+@media(max-width:420px){
+  .top-strip-inner{gap:8px}
+  .lang-switch button{padding:7px 9px}
+  .football-resource-card{padding:18px}
+}
