@@ -128,12 +128,13 @@ const pitchGallery = document.querySelector('[data-gallery-set="hriste"]');
 if (pitchGallery) {
   for (let index = 1; index <= 7; index += 1) {
     const number = String(index).padStart(2, '0');
+    const displayNumber = String(index);
     const source = `assets/photos/rehabilitace/socialni-zarizeni-pokoju-a-rehabilitace-${number}.webp`;
     const button = document.createElement('button');
     button.className = 'gallery-photo';
-    button.dataset.caption = `Regenerace a sociální zařízení ${number}`;
+    button.dataset.caption = `Regenerace a sociální zařízení ${displayNumber}`;
     button.dataset.lightbox = source;
-    button.innerHTML = `<img alt="Regenerace a sociální zařízení ${number}" loading="lazy" src="${source}"><span>Regenerace a sociální zařízení ${number}</span>`;
+    button.innerHTML = `<img alt="Regenerace a sociální zařízení ${displayNumber}" loading="lazy" src="${source}"><span>Regenerace a sociální zařízení ${displayNumber}</span>`;
     pitchGallery.appendChild(button);
   }
   const pitchCard = document.querySelector('.camp-category [data-open-gallery="hriste"]')?.closest('.camp-category');
@@ -153,7 +154,7 @@ if (pitchGallery) {
 if (currentPage === 'fotogalerie.html') {
   const categories = [...document.querySelectorAll('.gallery-category')];
   const pitchCategory = categories.find(section => section.querySelector('h2')?.textContent.trim() === 'Hřiště a zázemí');
-  const regenerationCategory = categories.find(section => section.querySelector('h2')?.textContent.trim() === 'Regenerace');
+  const regenerationCategory = categories.find(section => section.querySelector('h2')?.textContent.trim().startsWith('Regenerace'));
   if (pitchCategory && regenerationCategory) {
     pitchCategory.querySelector('h2').textContent = 'Hřiště, zázemí a regenerace';
     const targetGrid = pitchCategory.querySelector('.real-gallery-grid');
@@ -499,6 +500,92 @@ Object.assign(translations.en, {
   'Otevřít na Fotbal.cz':'Open on Fotbal.cz',
   'Zobrazit tabulku':'View table',
   'Otevřít statistiky':'Open statistics'
+});
+
+Object.assign(translations.de, {
+  'Výlety':'Ausflüge','Mapa':'Karte','Areál':'Anlage','Od roku 1945':'Seit 1945',
+  'Jsme malý fotbalový klub s velkým srdcem.':'Wir sind ein kleiner Fußballverein mit großem Herzen.',
+  'Od roku 1945 hrajeme fotbal na travnatých hřištích v Jílovém u Děčína, v jednom z nejkrásnějších koutů severních Čech. Přijeďte si k nám zahrát zápas, vyrazit na soustředění nebo se jen podívat, jak vypadá fotbal v objetí Labských pískovců.':'Seit 1945 spielen wir auf Naturrasenplätzen in Jílové bei Děčín, in einer der schönsten Regionen Nordböhmens. Kommen Sie zu einem Spiel, einem Trainingslager oder erleben Sie Fußball mitten im Elbsandsteingebirge.',
+  'Sport, ubytování, stravování i odpočinek na jednom místě.':'Sport, Unterkunft, Verpflegung und Erholung an einem Ort.',
+  'Proč právě k nám':'Warum zu uns','Soustředění bez zbytečného přejíždění':'Trainingslager ohne unnötige Wege',
+  'V areálu FC Jiskra Modrá máte tréninkové plochy, zázemí, regeneraci, ubytování i domácí stravování pohromadě. Pobyt připravíme pro fotbalové a další sportovní týmy podle jejich programu, věku hráčů a délky soustředění.':'Auf dem Gelände von FC Jiskra Modrá finden Sie Trainingsflächen, Einrichtungen, Regeneration, Unterkunft und Hausmannskost an einem Ort. Wir gestalten den Aufenthalt für Fußball- und andere Sportteams passend zu Programm, Alter und Aufenthaltsdauer.',
+  'Ubytování nabízíme podle aktuální kapacity také turistům, rodinám a jednotlivcům. Okolí Labských pískovců je ideální pro aktivní dovolenou i klidný víkend.':'Je nach Verfügbarkeit bieten wir die Unterkunft auch Touristen, Familien und Einzelreisenden an. Das Elbsandsteingebirge eignet sich für Aktivurlaub und ruhige Wochenenden.',
+  'Co u nás najdete':'Was Sie bei uns finden','Kompletní nabídka areálu':'Das komplette Angebot','Vyberte si celý pobyt, nebo jen služby, které právě potřebujete.':'Wählen Sie den ganzen Aufenthalt oder nur die Leistungen, die Sie benötigen.',
+  'Dvě travnatá hřiště doplňuje tenisový kurt, šatny, sprchy a zázemí pro rozhodčí. Po tréninku je k dispozici regenerační linka, vířivka a masážní lehátko.':'Zwei Naturrasenplätze werden durch einen Tennisplatz, Umkleiden, Duschen und Schiedsrichterräume ergänzt. Nach dem Training stehen Regenerationsbereich, Whirlpool und Massageliege zur Verfügung.',
+  'Prohlédnout fotografie →':'Fotos ansehen →','Pokoje jsou připravené převážně pro tři až čtyři osoby a mají vlastní sociální zařízení. Z ubytování je to jen pár kroků přímo na hřiště.':'Die Zimmer sind überwiegend für drei bis vier Personen ausgelegt und verfügen über ein eigenes Bad. Vom Zimmer sind es nur wenige Schritte zum Spielfeld.',
+  'Také pro veřejnost podle aktuální kapacity.':'Je nach Verfügbarkeit auch für die Öffentlichkeit.',
+  'Vaříme domácí kuchyni a denní režim přizpůsobíme sportovnímu programu. Zajistíme snídani, dopolední svačinu, oběd, odpolední svačinu i večeři; jídelníček domluvíme předem.':'Wir kochen Hausmannskost und passen den Tagesablauf an das Sportprogramm an. Frühstück, zwei Snacks, Mittag- und Abendessen sowie der Speiseplan werden im Voraus vereinbart.',
+  'Mezi tréninky můžete vyrazit do skal, na vyhlídku, za památkami nebo do Děčína. Připravili jsme dvanáct konkrétních tipů s přímým otevřením v Google Maps.':'Zwischen den Trainingseinheiten können Sie Felsen, Aussichtspunkte, Sehenswürdigkeiten oder Děčín besuchen. Wir haben zwölf konkrete Tipps mit direkter Route in Google Maps vorbereitet.',
+  'Zobrazit 12 tipů na výlet →':'12 Ausflugstipps anzeigen →','Poptávka pobytu':'Aufenthalt anfragen','Řekněte nám svůj termín':'Nennen Sie uns Ihren Termin',
+  'Pošlete základní představu o počtu osob a programu. Ozveme se s dostupností a konkrétní nabídkou.':'Senden Sie uns Personenzahl und Programmvorstellung. Wir melden uns mit Verfügbarkeit und einem konkreten Angebot.',
+  'Soustředění pro sportovní kluby':'Trainingslager für Sportvereine','Pronájem hřiště a areálu':'Vermietung von Platz und Anlage','Ubytování pro veřejnost':'Unterkunft für Gäste','Klubové a společenské akce':'Vereins- und Gesellschaftsveranstaltungen',
+  'Nezávazně':'Unverbindlich','Poptávkový formulář':'Anfrageformular','Název klubu nebo skupiny':'Name des Vereins oder der Gruppe','Formulář je připravený k napojení na odesílací službu.':'Das Formular ist für die Anbindung an einen Versanddienst vorbereitet.',
+  'Fotbal v Modré od roku 1945.':'Fußball in Modrá seit 1945.','Malý klub s velkým srdcem':'Kleiner Verein mit großem Herzen',
+  'Klub vyrostl z nadšení místních lidí pro fotbal. Už více než osm desetiletí spojuje hráče, trenéry, dobrovolníky i fanoušky a pečuje o areál v Jílovém u Děčína.':'Der Verein entstand aus der Fußballbegeisterung der Einheimischen. Seit mehr als acht Jahrzehnten verbindet er Spieler, Trainer, Helfer und Fans und pflegt die Anlage in Jílové bei Děčín.',
+  'Historie':'Geschichte','Klubové milníky':'Meilensteine des Vereins','Příběh fotbalu v Modré v pěti důležitých zastaveních.':'Die Geschichte des Fußballs in Modrá in fünf wichtigen Stationen.',
+  'Začátek fotbalu v Modré':'Beginn des Fußballs in Modrá','Po skončení druhé světové války vznikl v Modré samostatný fotbalový oddíl. První hráči a dobrovolníci položili základ klubu, který se brzy zapojil do pravidelných soutěží.':'Nach dem Zweiten Weltkrieg entstand in Modrá eine eigenständige Fußballabteilung. Die ersten Spieler und Helfer legten den Grundstein für den baldigen Ligabetrieb.',
+  'Nová organizace tělovýchovy':'Neue Sportorganisation','V rámci poválečné reorganizace sportu se oddíl začlenil do sjednocené tělovýchovy. Fotbalová činnost v obci pokračovala a klub si udržel své místní zázemí.':'Im Zuge der Nachkriegsreorganisation wurde die Abteilung in den einheitlichen Sportverband eingegliedert. Der Fußballbetrieb vor Ort wurde fortgesetzt.',
+  'Jméno Jiskra':'Der Name Jiskra','Oddíl začal vystupovat pod názvem Jiskra. Jméno se stalo pevnou součástí klubové identity a v různých organizačních podobách provází modranský fotbal dodnes.':'Die Abteilung trat fortan unter dem Namen Jiskra auf. Der Name wurde zum festen Bestandteil der Vereinsidentität und begleitet den Fußball in Modrá bis heute.',
+  'Samostatná nová etapa':'Eine neue selbstständige Etappe','Po společenských změnách se klub znovu postavil na vlastní nohy. Obnovil samostatné fungování, navázal na tradici předchozích generací a začal rozvíjet areál.':'Nach dem gesellschaftlichen Wandel wurde der Verein wieder selbstständig, knüpfte an frühere Generationen an und entwickelte die Anlage weiter.',
+  'DNES':'HEUTE','Současný klub staví na komunitě, dobrovolnické práci a otevřeném areálu. Vedle soutěžního fotbalu nabízí zázemí pro soustředění, ubytování a sportovní pobyty v Labských pískovcích.':'Der heutige Verein lebt von Gemeinschaft, ehrenamtlicher Arbeit und einer offenen Anlage. Neben Ligafußball bietet er Trainingslager, Unterkunft und Sportaufenthalte im Elbsandsteingebirge.',
+  'Lidé v klubu':'Menschen im Verein','Labské pískovce':'Elbsandsteingebirge','Výlety v okolí':'Ausflüge in der Umgebung','Dvanáct míst pro volný den nebo program mezi tréninky.':'Zwölf Ziele für einen freien Tag oder die Zeit zwischen Trainingseinheiten.',
+  '12 tipů':'12 Tipps','Od skal po děčínské památky':'Von Felsen bis zu Sehenswürdigkeiten in Děčín','Každý odkaz otevře trasu z areálu FC Jiskra Modrá přímo v Google Maps.':'Jeder Link öffnet direkt eine Route von FC Jiskra Modrá in Google Maps.',
+  'Tiské stěny':'Tyssaer Wände','Skalní město s vyhlídkovým okruhem, pískovcovými věžemi a trasami pro kratší i delší výlet.':'Felsenstadt mit Rundweg, Sandsteintürmen sowie kurzen und längeren Routen.',
+  'Děčínský Sněžník':'Hoher Schneeberg','Stolová hora s kamennou rozhlednou a širokými výhledy na České i Saské Švýcarsko.':'Tafelberg mit Steinturm und weitem Blick über die Böhmische und Sächsische Schweiz.',
+  'Pravčická brána':'Prebischtor','Nejznámější přírodní symbol Českého Švýcarska a jeden z největších pískovcových mostů v Evropě.':'Das bekannteste Naturdenkmal der Böhmischen Schweiz und eine der größten Sandsteinbrücken Europas.',
+  'Soutěsky Kamenice':'Kamnitzklammen','Romantická cesta kaňonem řeky Kamenice v Hřensku, vhodná jako klidnější doplněk turistického programu.':'Romantischer Weg durch die Kamnitzklamm bei Hřensko als ruhigerer Programmpunkt.',
+  'Dolský mlýn':'Grundmühle','Malebná zřícenina historického mlýna v údolí Kamenice, známá také z českých pohádek.':'Malerische Ruine einer historischen Mühle im Kamnitztal.',
+  'Zámek Děčín':'Schloss Děčín','Dominanta města nad soutokem Labe a Ploučnice s Růžovou zahradou a výhledem na údolí.':'Wahrzeichen über dem Zusammenfluss von Elbe und Ploučnice mit Rosengarten und Talblick.',
+  'Pastýřská stěna':'Schäferwand','Vyhlídka přímo nad Děčínem s restaurací, ferratou a panoramatem zámku i řeky Labe.':'Aussicht über Děčín mit Restaurant, Klettersteig und Panorama auf Schloss und Elbe.',
+  'Zoo Děčín':'Zoo Děčín','Menší zoologická zahrada v lesoparku na Pastýřské stěně, vhodná pro rodiny a mládežnické týmy.':'Kleiner Zoo im Waldpark auf der Schäferwand, geeignet für Familien und Jugendteams.',
+  'Belvedér':'Belvedere','Historická skalní vyhlídka v Labské Stráni s působivým pohledem do hlubokého kaňonu Labe.':'Historischer Felsaussichtspunkt in Labská Stráň mit Blick in den tiefen Elbcanyon.',
+  'Jetřichovické vyhlídky':'Aussichten bei Jetřichovice','Oblíbený okruh přes Mariinu skálu, Vilemíninu stěnu a Rudolfův kámen pro zdatnější skupiny.':'Beliebte Runde über Marienfels, Wilhelminenwand und Rudolfstein für sportliche Gruppen.',
+  'Růžovský vrch':'Rosenberg','Výrazný čedičový vrch u Růžové s lesní výstupovou trasou a klidnou přírodou mimo hlavní cíle.':'Markanter Basaltberg bei Růžová mit ruhigem Waldaufstieg abseits der Hauptziele.',
+  'Hřensko a nábřeží Labe':'Hřensko und das Elbufer','Výchozí bod Českého Švýcarska, kde se Kamenice vlévá do Labe a odkud začíná řada turistických tras.':'Ausgangspunkt der Böhmischen Schweiz am Zusammenfluss von Kamnitz und Elbe.',
+  'Otevřít trasu v Google Maps →':'Route in Google Maps öffnen →','Výchozí bod':'Ausgangspunkt','Vyrazte přímo z Modré':'Direkt von Modrá starten','Otevřete si polohu areálu nebo naplánujte pobyt s výletem.':'Öffnen Sie den Standort oder planen Sie einen Aufenthalt mit Ausflug.','Mapa areálu':'Karte der Anlage','Poptat pobyt':'Aufenthalt anfragen'
+});
+
+Object.assign(translations.en, {
+  'Výlety':'Trips','Mapa':'Map','Areál':'Venue','Od roku 1945':'Since 1945',
+  'Jsme malý fotbalový klub s velkým srdcem.':'We are a small football club with a big heart.',
+  'Od roku 1945 hrajeme fotbal na travnatých hřištích v Jílovém u Děčína, v jednom z nejkrásnějších koutů severních Čech. Přijeďte si k nám zahrát zápas, vyrazit na soustředění nebo se jen podívat, jak vypadá fotbal v objetí Labských pískovců.':'Since 1945, we have played on grass pitches in Jílové near Děčín, in one of the most beautiful parts of northern Bohemia. Come for a match, a training camp or simply experience football in the Elbe Sandstone Mountains.',
+  'Sport, ubytování, stravování i odpočinek na jednom místě.':'Sport, accommodation, catering and recovery in one place.',
+  'Proč právě k nám':'Why choose us','Soustředění bez zbytečného přejíždění':'A training camp without unnecessary travel',
+  'V areálu FC Jiskra Modrá máte tréninkové plochy, zázemí, regeneraci, ubytování i domácí stravování pohromadě. Pobyt připravíme pro fotbalové a další sportovní týmy podle jejich programu, věku hráčů a délky soustředění.':'At FC Jiskra Modrá, training areas, facilities, recovery, accommodation and home-style catering are all in one place. We tailor stays to each team’s programme, player age and length of camp.',
+  'Ubytování nabízíme podle aktuální kapacity také turistům, rodinám a jednotlivcům. Okolí Labských pískovců je ideální pro aktivní dovolenou i klidný víkend.':'Subject to availability, accommodation is also open to tourists, families and individuals. The Elbe Sandstone Mountains are ideal for active holidays and quiet weekends.',
+  'Co u nás najdete':'What you will find','Kompletní nabídka areálu':'Everything at the venue','Vyberte si celý pobyt, nebo jen služby, které právě potřebujete.':'Choose a complete stay or only the services you need.',
+  'Dvě travnatá hřiště doplňuje tenisový kurt, šatny, sprchy a zázemí pro rozhodčí. Po tréninku je k dispozici regenerační linka, vířivka a masážní lehátko.':'Two grass pitches are complemented by a tennis court, changing rooms, showers and referee facilities. After training, teams can use the recovery area, hot tub and massage table.',
+  'Prohlédnout fotografie →':'View photos →','Pokoje jsou připravené převážně pro tři až čtyři osoby a mají vlastní sociální zařízení. Z ubytování je to jen pár kroků přímo na hřiště.':'Rooms are mainly for three to four people and have private bathrooms. The pitch is only a few steps away.',
+  'Také pro veřejnost podle aktuální kapacity.':'Also available to the public, subject to capacity.',
+  'Vaříme domácí kuchyni a denní režim přizpůsobíme sportovnímu programu. Zajistíme snídani, dopolední svačinu, oběd, odpolední svačinu i večeři; jídelníček domluvíme předem.':'We serve home-style food and adapt the daily schedule to the sports programme. Breakfast, two snacks, lunch, dinner and the menu are agreed in advance.',
+  'Mezi tréninky můžete vyrazit do skal, na vyhlídku, za památkami nebo do Děčína. Připravili jsme dvanáct konkrétních tipů s přímým otevřením v Google Maps.':'Between training sessions, visit the rocks, viewpoints, local sights or Děčín. We have prepared twelve specific tips with direct Google Maps routes.',
+  'Zobrazit 12 tipů na výlet →':'View 12 trip ideas →','Poptávka pobytu':'Stay enquiry','Řekněte nám svůj termín':'Tell us your dates',
+  'Pošlete základní představu o počtu osob a programu. Ozveme se s dostupností a konkrétní nabídkou.':'Send us the number of guests and your programme idea. We will reply with availability and a specific offer.',
+  'Soustředění pro sportovní kluby':'Training camps for sports clubs','Pronájem hřiště a areálu':'Pitch and venue rental','Ubytování pro veřejnost':'Public accommodation','Klubové a společenské akce':'Club and social events',
+  'Nezávazně':'No obligation','Poptávkový formulář':'Enquiry form','Název klubu nebo skupiny':'Club or group name','Formulář je připravený k napojení na odesílací službu.':'The form is ready to be connected to a submission service.',
+  'Fotbal v Modré od roku 1945.':'Football in Modrá since 1945.','Malý klub s velkým srdcem':'A small club with a big heart',
+  'Klub vyrostl z nadšení místních lidí pro fotbal. Už více než osm desetiletí spojuje hráče, trenéry, dobrovolníky i fanoušky a pečuje o areál v Jílovém u Děčína.':'The club grew from local enthusiasm for football. For more than eight decades, it has brought together players, coaches, volunteers and supporters while caring for the venue in Jílové near Děčín.',
+  'Historie':'History','Klubové milníky':'Club milestones','Příběh fotbalu v Modré v pěti důležitých zastaveních.':'The story of football in Modrá in five key milestones.',
+  'Začátek fotbalu v Modré':'Football begins in Modrá','Po skončení druhé světové války vznikl v Modré samostatný fotbalový oddíl. První hráči a dobrovolníci položili základ klubu, který se brzy zapojil do pravidelných soutěží.':'After the Second World War, an independent football section was established in Modrá. Its first players and volunteers laid the foundations for regular competition.',
+  'Nová organizace tělovýchovy':'A new sports organisation','V rámci poválečné reorganizace sportu se oddíl začlenil do sjednocené tělovýchovy. Fotbalová činnost v obci pokračovala a klub si udržel své místní zázemí.':'During the post-war reorganisation of sport, the section joined the unified sports structure. Football continued locally and retained its base.',
+  'Jméno Jiskra':'The Jiskra name','Oddíl začal vystupovat pod názvem Jiskra. Jméno se stalo pevnou součástí klubové identity a v různých organizačních podobách provází modranský fotbal dodnes.':'The section began playing under the Jiskra name, which became a lasting part of the club’s identity and remains with football in Modrá today.',
+  'Samostatná nová etapa':'A new independent chapter','Po společenských změnách se klub znovu postavil na vlastní nohy. Obnovil samostatné fungování, navázal na tradici předchozích generací a začal rozvíjet areál.':'Following the social changes, the club became independent again, continued the tradition of earlier generations and began developing the venue.',
+  'DNES':'TODAY','Současný klub staví na komunitě, dobrovolnické práci a otevřeném areálu. Vedle soutěžního fotbalu nabízí zázemí pro soustředění, ubytování a sportovní pobyty v Labských pískovcích.':'Today the club is built on community, volunteer work and an open venue. Alongside competitive football, it offers training camps, accommodation and sports stays in the Elbe Sandstone Mountains.',
+  'Lidé v klubu':'People at the club','Labské pískovce':'Elbe Sandstone Mountains','Výlety v okolí':'Trips nearby','Dvanáct míst pro volný den nebo program mezi tréninky.':'Twelve destinations for a free day or time between training sessions.',
+  '12 tipů':'12 ideas','Od skal po děčínské památky':'From rock towns to Děčín landmarks','Každý odkaz otevře trasu z areálu FC Jiskra Modrá přímo v Google Maps.':'Each link opens a route from FC Jiskra Modrá directly in Google Maps.',
+  'Tiské stěny':'Tisá Walls','Skalní město s vyhlídkovým okruhem, pískovcovými věžemi a trasami pro kratší i delší výlet.':'A rock town with a scenic circuit, sandstone towers and routes for shorter or longer walks.',
+  'Děčínský Sněžník':'Děčínský Sněžník','Stolová hora s kamennou rozhlednou a širokými výhledy na České i Saské Švýcarsko.':'A table mountain with a stone lookout tower and wide views over Bohemian and Saxon Switzerland.',
+  'Pravčická brána':'Pravčická Gate','Nejznámější přírodní symbol Českého Švýcarska a jeden z největších pískovcových mostů v Evropě.':'The best-known natural landmark of Bohemian Switzerland and one of Europe’s largest sandstone arches.',
+  'Soutěsky Kamenice':'Kamenice Gorges','Romantická cesta kaňonem řeky Kamenice v Hřensku, vhodná jako klidnější doplněk turistického programu.':'A romantic route through the Kamenice canyon near Hřensko and a quieter addition to the programme.',
+  'Dolský mlýn':'Dolský Mill','Malebná zřícenina historického mlýna v údolí Kamenice, známá také z českých pohádek.':'Picturesque ruins of a historic mill in the Kamenice valley.',
+  'Zámek Děčín':'Děčín Castle','Dominanta města nad soutokem Labe a Ploučnice s Růžovou zahradou a výhledem na údolí.':'A city landmark above the confluence of the Elbe and Ploučnice, with a rose garden and valley views.',
+  'Pastýřská stěna':'Shepherd’s Wall','Vyhlídka přímo nad Děčínem s restaurací, ferratou a panoramatem zámku i řeky Labe.':'A viewpoint above Děčín with a restaurant, via ferrata and views of the castle and Elbe.',
+  'Zoo Děčín':'Děčín Zoo','Menší zoologická zahrada v lesoparku na Pastýřské stěně, vhodná pro rodiny a mládežnické týmy.':'A smaller zoo in the forest park on Shepherd’s Wall, suitable for families and youth teams.',
+  'Belvedér':'Belvedere','Historická skalní vyhlídka v Labské Stráni s působivým pohledem do hlubokého kaňonu Labe.':'A historic rock viewpoint at Labská Stráň overlooking the deep Elbe canyon.',
+  'Jetřichovické vyhlídky':'Jetřichovice viewpoints','Oblíbený okruh přes Mariinu skálu, Vilemíninu stěnu a Rudolfův kámen pro zdatnější skupiny.':'A popular circuit via Mariina skála, Vilemínina stěna and Rudolfův kámen for fitter groups.',
+  'Růžovský vrch':'Růžovský Hill','Výrazný čedičový vrch u Růžové s lesní výstupovou trasou a klidnou přírodou mimo hlavní cíle.':'A prominent basalt hill near Růžová with a quiet woodland ascent away from the busiest sights.',
+  'Hřensko a nábřeží Labe':'Hřensko and the Elbe waterfront','Výchozí bod Českého Švýcarska, kde se Kamenice vlévá do Labe a odkud začíná řada turistických tras.':'A gateway to Bohemian Switzerland where the Kamenice meets the Elbe and many walking routes begin.',
+  'Otevřít trasu v Google Maps →':'Open route in Google Maps →','Výchozí bod':'Starting point','Vyrazte přímo z Modré':'Start directly from Modrá','Otevřete si polohu areálu nebo naplánujte pobyt s výletem.':'Open the venue location or plan a stay with a trip.','Mapa areálu':'Venue map','Poptat pobyt':'Enquire about a stay'
 });
 
 const originalText = new WeakMap();
