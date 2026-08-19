@@ -119,24 +119,67 @@ document.querySelectorAll('[alt],[data-caption],[title],[aria-label]').forEach(e
       .replace(/rehabilitace/g, 'regenerace'));
   });
 });
+/* Ve viditelných popiscích fotografií používáme 1, 2, 3 místo 01, 02, 03. */
+document.querySelectorAll('.gallery-photo').forEach(photo => {
+  const normalizeCaption = value => value?.replace(/([^\d\s])0([1-9])$/, '$1 $2').replace(/\s0([1-9])$/, ' $1');
+  const caption = normalizeCaption(photo.dataset.caption);
+  if (caption) photo.dataset.caption = caption;
+  const image = photo.querySelector('img');
+  if (image?.alt) image.alt = normalizeCaption(image.alt);
+  const label = photo.querySelector('span');
+  if (label?.textContent) label.textContent = normalizeCaption(label.textContent);
+});
 document.querySelectorAll('a[href$="#rehabilitace"]').forEach(link => link.setAttribute('href', link.getAttribute('href').replace('#rehabilitace', '#regenerace')));
 const oldRegenerationAnchor = document.getElementById('rehabilitace');
 if (oldRegenerationAnchor) oldRegenerationAnchor.id = 'regenerace';
 
-/* Soustředění: regenerace je součástí stejného bloku jako hřiště a zázemí. */
-const pitchGallery = document.querySelector('[data-gallery-set="hriste"]');
-if (pitchGallery) {
-  for (let index = 1; index <= 7; index += 1) {
-    const number = String(index).padStart(2, '0');
-    const displayNumber = String(index);
-    const source = `assets/photos/rehabilitace/socialni-zarizeni-pokoju-a-rehabilitace-${number}.webp`;
+/* Nové fotografie areálu jsou sdílené mezi Soustředěním a hlavní fotogalerií. */
+const pitchFacilityPhotos = [
+  ['assets/photos/hriste/viceucelove-hriste-01.webp', 'Víceúčelové hřiště 1'],
+  ['assets/photos/hriste/viceucelove-hriste-02.webp', 'Víceúčelové hřiště 2'],
+  ['assets/photos/hriste/viceucelove-hriste-03.webp', 'Víceúčelové hřiště 3'],
+  ['assets/photos/hriste/satny-chodba-01.webp', 'Šatny – chodba'],
+  ['assets/photos/hriste/satny-sprchy-01.webp', 'Šatny – sprchy 1'],
+  ['assets/photos/hriste/satny-sprchy-02.webp', 'Šatny – sprchy 2'],
+  ['assets/photos/hriste/satny-wc-01.webp', 'Šatny – WC 1'],
+  ['assets/photos/hriste/satny-wc-02.webp', 'Šatny – WC 2'],
+  ['assets/photos/regenerace/regenerace-01.webp', 'Regenerace – vířivka 1'],
+  ['assets/photos/regenerace/regenerace-02.webp', 'Regenerace – sprchy 1'],
+  ['assets/photos/regenerace/regenerace-03.webp', 'Regenerace – sprchy 2'],
+  ['assets/photos/regenerace/regenerace-04.webp', 'Regenerace – masážní místnost'],
+  ['assets/photos/regenerace/regenerace-05.webp', 'Regenerace – hydromasážní kabina'],
+  ['assets/photos/regenerace/regenerace-08.webp', 'Regenerace – vířivka 2'],
+  ['assets/photos/regenerace/bazen-01.webp', 'Venkovní bazén 1'],
+  ['assets/photos/regenerace/bazen-02.webp', 'Venkovní bazén 2'],
+  ['assets/photos/regenerace/bazen-03.webp', 'Venkovní bazén 3']
+];
+const accommodationFacilityPhotos = Array.from({ length: 7 }, (_, index) => {
+  const number = String(index + 1).padStart(2, '0');
+  return [`assets/photos/ubytovani/socialni-zarizeni-${number}.webp`, `Sociální zařízení pokojů ${index + 1}`];
+});
+const appendGalleryPhotos = (gallery, photos) => {
+  if (!gallery) return;
+  photos.forEach(([source, caption]) => {
     const button = document.createElement('button');
     button.className = 'gallery-photo';
-    button.dataset.caption = `Regenerace a sociální zařízení ${displayNumber}`;
+    button.dataset.caption = caption;
     button.dataset.lightbox = source;
-    button.innerHTML = `<img alt="Regenerace a sociální zařízení ${displayNumber}" loading="lazy" src="${source}"><span>Regenerace a sociální zařízení ${displayNumber}</span>`;
-    pitchGallery.appendChild(button);
-  }
+    const image = document.createElement('img');
+    image.alt = caption;
+    image.loading = 'lazy';
+    image.src = source;
+    const label = document.createElement('span');
+    label.textContent = caption;
+    button.append(image, label);
+    gallery.appendChild(button);
+  });
+};
+
+/* Soustředění: regenerace patří k hřišti, sociální zařízení k ubytování. */
+const pitchGallery = document.querySelector('[data-gallery-set="hriste"]');
+if (pitchGallery) {
+  appendGalleryPhotos(pitchGallery, pitchFacilityPhotos);
+  appendGalleryPhotos(document.querySelector('[data-gallery-set="ubytovani"]'), accommodationFacilityPhotos);
   const pitchCard = document.querySelector('.camp-category [data-open-gallery="hriste"]')?.closest('.camp-category');
   if (pitchCard) {
     const title = pitchCard.querySelector('h3');
@@ -150,17 +193,18 @@ if (pitchGallery) {
   }
 }
 
-/* Hlavní fotogalerie: sloučení regenerace do prvního bloku. */
+/* Hlavní fotogalerie: nové fotografie nahrazují starý blok regenerace. */
 if (currentPage === 'fotogalerie.html') {
   const categories = [...document.querySelectorAll('.gallery-category')];
   const pitchCategory = categories.find(section => section.querySelector('h2')?.textContent.trim() === 'Hřiště a zázemí');
+  const accommodationCategory = categories.find(section => section.querySelector('h2')?.textContent.trim() === 'Ubytování');
   const regenerationCategory = categories.find(section => section.querySelector('h2')?.textContent.trim().startsWith('Regenerace'));
-  if (pitchCategory && regenerationCategory) {
+  if (pitchCategory) {
     pitchCategory.querySelector('h2').textContent = 'Hřiště, zázemí a regenerace';
-    const targetGrid = pitchCategory.querySelector('.real-gallery-grid');
-    regenerationCategory.querySelectorAll('.gallery-photo').forEach(photo => targetGrid.appendChild(photo));
-    regenerationCategory.remove();
+    appendGalleryPhotos(pitchCategory.querySelector('.real-gallery-grid'), pitchFacilityPhotos);
   }
+  appendGalleryPhotos(accommodationCategory?.querySelector('.real-gallery-grid'), accommodationFacilityPhotos);
+  regenerationCategory?.remove();
 
   const container = document.querySelector('.compact-page .container');
   const visibleCategories = [...document.querySelectorAll('.gallery-category')];
@@ -588,6 +632,19 @@ Object.assign(translations.en, {
   'Otevřít trasu v Google Maps →':'Open route in Google Maps →','Výchozí bod':'Starting point','Vyrazte přímo z Modré':'Start directly from Modrá','Otevřete si polohu areálu nebo naplánujte pobyt s výletem.':'Open the venue location or plan a stay with a trip.','Mapa areálu':'Venue map','Poptat pobyt':'Enquire about a stay'
 });
 
+Object.assign(translations.de, {
+  'Víceúčelové hřiště':'Mehrzweckplatz','Venkovní bazén':'Außenpool','Sociální zařízení pokojů':'Sanitäranlagen der Zimmer',
+  'Šatny – chodba':'Umkleiden – Flur','Šatny – sprchy':'Umkleiden – Duschen','Šatny – WC':'Umkleiden – WC',
+  'Regenerace – vířivka':'Regeneration – Whirlpool','Regenerace – sprchy':'Regeneration – Duschen',
+  'Regenerace – masážní místnost':'Regeneration – Massageraum','Regenerace – hydromasážní kabina':'Regeneration – Hydromassagekabine'
+});
+Object.assign(translations.en, {
+  'Víceúčelové hřiště':'Multi-purpose court','Venkovní bazén':'Outdoor pool','Sociální zařízení pokojů':'En-suite bathrooms',
+  'Šatny – chodba':'Changing rooms – corridor','Šatny – sprchy':'Changing rooms – showers','Šatny – WC':'Changing rooms – toilets',
+  'Regenerace – vířivka':'Recovery – hot tub','Regenerace – sprchy':'Recovery – showers',
+  'Regenerace – masážní místnost':'Recovery – massage room','Regenerace – hydromasážní kabina':'Recovery – hydromassage cabin'
+});
+
 const originalText = new WeakMap();
 const originalDocumentTitle = document.title;
 const translatableSelector = 'body *:not(script):not(style):not(svg):not(path)';
@@ -604,7 +661,7 @@ function translateString(value,lang){
   let translated=translations[lang]?.[key];
   if(!translated){
     // captions with a translated category followed by a number
-    translated=key.replace(/^(Hřiště|Pokoje|Stravování|Regenerace a sociální zařízení)\s+(\d+)/,(m,a,n)=>(translations[lang]?.[a]||a)+' '+n);
+    translated=key.replace(/^(Hřiště|Pokoje|Stravování|Víceúčelové hřiště|Venkovní bazén|Sociální zařízení pokojů|Šatny – sprchy|Šatny – WC|Regenerace – vířivka|Regenerace – sprchy)\s+(\d+)/,(m,a,n)=>(translations[lang]?.[a]||a)+' '+n);
   }
   return lead+(translated||key)+trail;
 }

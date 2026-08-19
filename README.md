@@ -1,4 +1,4 @@
-# FC Jiskra Modrá – verze 23
+# FC Jiskra Modrá – verze 24
 
 Statický web je připravený pro nasazení na Vercel a obsahuje jazykové verze CZ / DE / EN.
 
@@ -16,6 +16,13 @@ Statický web je připravený pro nasazení na Vercel a obsahuje jazykové verze
 - přirozené číslování 1, 2, 3 bez úvodních nul
 - mapa jako malý, nenápadný odkaz v navigaci
 - kompaktnější karty, formuláře, galerie a soupiska na mobilu
+
+## Úpravy verze 24
+
+- nové fotografie hřišť, šaten, sprch, WC, regenerace a venkovního bazénu
+- nové fotografie pokojů a jejich sociálního zařízení
+- široká fotografie hlavního hřiště jako decentní pozadí úvodní části
+- duplicitní fotografie bazénu jsou v galerii pouze jednou
 
 ## Počítadlo zhlédnutí
 
